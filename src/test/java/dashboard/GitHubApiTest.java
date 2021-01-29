@@ -23,4 +23,17 @@ class GitHubApiTest {
             fail();
         }
     }
+
+    @Test
+    void 이슈_테스트() {
+        try {
+            GitHubApi gitHubApi = new GitHubApi(token);
+            List<GHIssue> issueList = gitHubApi.getIssueList("Ohzzi/live-study");
+
+            assertThat(issueList).isNotEmpty();
+        } catch (IOException e) {
+            fail();
+        }
+    }
+
 }

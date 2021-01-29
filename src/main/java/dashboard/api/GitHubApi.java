@@ -16,4 +16,10 @@ public class GitHubApi {
     public GitHubApi(String token) throws IOException {
         this.github = new GitHubBuilder().withOAuthToken(token).build();
     }
+
+    public List<GHIssue> getIssueList(String repoName) throws IOException {
+        GHRepository repository = github.getRepository(repoName);
+
+        return repository.getIssues(GHIssueState.ALL);
+    }
 }
