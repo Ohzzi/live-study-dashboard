@@ -22,4 +22,24 @@ public class GitHubApi {
 
         return repository.getIssues(GHIssueState.ALL);
     }
+
+    public Map<String, Integer> getIssueCommentMap(List<GHIssue> issueList) throws IOException {
+        Map<String, Integer> map = new HashMap<>();
+        List<String> commenterList = new ArrayList<>();
+        for (GHIssue issue: issueList) {
+            for (GHIssueComment comment: issue.getComments()) {
+                String userName = comment.getUser().getName();
+                if (!commenterList.contains(userName)) {
+                    if (!map.containsKey(userName)) {
+                        map.put(userName, 1);
+                    } else {
+                        map.put(userName, map.get(userName) + 1);
+                    }
+                    commenterList.add(userName);
+                }
+            }
+            commenterList.clear();
+        }
+        return map;
+    }
 }
