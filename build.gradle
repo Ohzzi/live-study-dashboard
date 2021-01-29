@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'org.live-study.dashboard'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url "http://repository.of/dependency" }
+}
+
+dependencies {
+    implementation 'org.jetbrains:annotations:20.1.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'org.assertj:assertj-core:3.11.1'
+    compile group: 'org.kohsuke', name: 'github-api', version: '1.119'
+}
+
+test {
+    useJUnitPlatform()
+}
